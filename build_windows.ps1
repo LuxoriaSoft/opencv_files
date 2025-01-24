@@ -106,7 +106,7 @@ function BuildForWindows($targetPlatform, $vcpkgPath, $runMsbuild, $hostPlatform
 If ((Resolve-Path -Path $MyInvocation.InvocationName).ProviderPath -eq $MyInvocation.MyCommand.Path) {
 
     ##### Change here #####
-    $vcpkgPath = "C:\Projects\vcpkg"
+    $vcpkgPath = "C:\vcpkg"
     $platform = "x64"
     #$platform = "x86"
     #$platform = "arm64"
