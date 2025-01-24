@@ -30,19 +30,6 @@ jobs:
           fetch-depth: 1
           submodules: recursive
 
-      - name: Build OpenCV
-        shell: powershell
-        run: |
-          Set-PSDebug -Trace 1
-          if ("${{matrix.platform}}" -eq 'win'){
-            . ".\build_windows.ps1"
-            BuildForWindows ${{matrix.arch}} "${env:VCPKG_ROOT}" $TRUE
-          }
-          elseif ("${{matrix.platform}}" -eq 'uwp'){
-            . ".\build_uwp.ps1"
-            BuildForUWP ${{matrix.arch}} "${env:VCPKG_ROOT}" $TRUE
-          }
-
       - name: Install Server-Media-Foundation
         shell: powershell
         run: |
@@ -59,7 +46,20 @@ jobs:
           git clone https://github.com/microsoft/vcpkg.git C:\vcpkg
           cd C:\vcpkg
           .\bootstrap-vcpkg.bat
+          $env:VCPKG_ROOT = 'C:\vcpkg'
 
+          - name: Build OpenCV
+          shell: powershell
+          run: |
+            Set-PSDebug -Trace 1
+            if ("${{matrix.platform}}" -eq 'win'){
+              . ".\build_windows.ps1"
+              BuildForWindows ${{matrix.arch}} "${env:VCPKG_ROOT}" $TRUE
+            }
+            elseif ("${{matrix.platform}}" -eq 'uwp'){
+              . ".\build_uwp.ps1"
+              BuildForUWP ${{matrix.arch}} "${env:VCPKG_ROOT}" $TRUE
+            }
 
       - name: Vcpkg
         shell: powershell
