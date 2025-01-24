@@ -1,6 +1,7 @@
-name: Windows Server 2022
+name: OpenCV + OpenCV Contrib
 
 on:
+  push:
   pull_request:
     types: [synchronize, opened]
 
