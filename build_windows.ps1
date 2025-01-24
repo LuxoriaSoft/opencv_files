@@ -45,48 +45,46 @@ function BuildForWindows($targetPlatform, $vcpkgPath, $runMsbuild, $hostPlatform
     }
 
     cmake -G "Visual Studio 17 2022" `
-        -A $msbuildPlatform `
-        $crossCompileOptions `
-        -D CMAKE_SYSTEM_HOST_PROCESSOR=$hostProcessor `
-        -D CMAKE_SYSTEM_PROCESSOR=$targetProcessor `
-        -D CMAKE_SYSTEM_NAME=Windows `
-        -D CMAKE_SYSTEM_VERSION=10.0 `
-        -D CMAKE_BUILD_TYPE=Release `
-        -D CMAKE_INSTALL_PREFIX=install `
-        -D INSTALL_C_EXAMPLES=OFF `
-        -D INSTALL_PYTHON_EXAMPLES=OFF `
-        -D BUILD_DOCS=OFF `
-        -D BUILD_WITH_DEBUG_INFO=OFF `
-        -D BUILD_DOCS=OFF `
-        -D BUILD_EXAMPLES=OFF `
-        -D BUILD_TESTS=OFF `
-        -D BUILD_PERF_TESTS=OFF `
-        -D BUILD_JAVA=OFF `
-        -D BUILD_WITH_DEBUG_INFO=OFF `
-        -D BUILD_opencv_apps=OFF `
-        -D BUILD_opencv_datasets=OFF `
-        -D BUILD_opencv_gapi=OFF `
-        -D BUILD_opencv_java_bindings_generator=OFF `
-        -D BUILD_opencv_js=OFF `
-        -D BUILD_opencv_js_bindings_generator=OFF `
-        -D BUILD_opencv_objc_bindings_generator=OFF `
-        -D BUILD_opencv_python_bindings_generator=OFF `
-        -D BUILD_opencv_python_tests=OFF `
-        -D BUILD_opencv_ts=OFF `
-        -D BUILD_opencv_world=OFF `
-        -D WITH_MSMF=${msmfFlag} `
-        -D WITH_MSMF_DXVA=${msmfFlag} `
-        -D WITH_QT=OFF `
-        -D WITH_FREETYPE=OFF `
-        -D WITH_TESSERACT=ON `
-        -D WITH_CAROTENE=${caroteneFlag} `
-        -D Tesseract_INCLUDE_DIR="${vcpkgPath}/installed/${targetPlatform}-windows-static/include" `
-        -D Tesseract_LIBRARY="${vcpkgPath}/installed/${targetPlatform}-windows-static/lib/tesseract41.lib" `
-        -D Lept_LIBRARY="${vcpkgPath}/installed/${targetPlatform}-windows-static/lib/leptonica-1.81.0.lib" `
-        -D ENABLE_CXX11=1 `
-        -D OPENCV_ENABLE_NONFREE=ON `
-        -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules `
-        -D BUILD_SHARED_LIBS=OFF ../opencv
+      -A $msbuildPlatform `
+      $crossCompileOptions `
+      -D CMAKE_SYSTEM_HOST_PROCESSOR=$hostProcessor `
+      -D CMAKE_SYSTEM_PROCESSOR=$targetProcessor `
+      -D CMAKE_SYSTEM_NAME=Windows `
+      -D CMAKE_SYSTEM_VERSION=10.0 `
+      -D CMAKE_BUILD_TYPE=Release `
+      -D CMAKE_INSTALL_PREFIX=install `
+      -D INSTALL_C_EXAMPLES=OFF `
+      -D INSTALL_PYTHON_EXAMPLES=OFF `
+      -D BUILD_DOCS=OFF `
+      -D BUILD_WITH_DEBUG_INFO=OFF `
+      -D BUILD_EXAMPLES=OFF `
+      -D BUILD_TESTS=OFF `
+      -D BUILD_PERF_TESTS=OFF `
+      -D BUILD_JAVA=OFF `
+      -D BUILD_opencv_apps=OFF `
+      -D BUILD_opencv_datasets=OFF `
+      -D BUILD_opencv_gapi=OFF `
+      -D BUILD_opencv_java_bindings_generator=OFF `
+      -D BUILD_opencv_js=OFF `
+      -D BUILD_opencv_js_bindings_generator=OFF `
+      -D BUILD_opencv_objc_bindings_generator=OFF `
+      -D BUILD_opencv_python_bindings_generator=OFF `
+      -D BUILD_opencv_python_tests=OFF `
+      -D BUILD_opencv_ts=OFF `
+      -D BUILD_opencv_world=OFF `
+      -D WITH_MSMF=${msmfFlag} `
+      -D WITH_MSMF_DXVA=${msmfFlag} `
+      -D WITH_QT=OFF `
+      -D WITH_FREETYPE=OFF `
+      -D WITH_TESSERACT=ON `
+      -D WITH_CAROTENE=${caroteneFlag} `
+      -D Tesseract_INCLUDE_DIR="${vcpkgPath}/installed/${targetPlatform}-windows-static/include/tesseract" `
+      -D Tesseract_LIBRARY="${vcpkgPath}/installed/${targetPlatform}-windows-static/lib/tesseract55.lib" `
+      -D Lept_LIBRARY="${vcpkgPath}/installed/${targetPlatform}-windows-static/lib/leptonica-1.85.0.lib" `
+      -D ENABLE_CXX11=1 `
+      -D OPENCV_ENABLE_NONFREE=ON `
+      -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules `
+      -D BUILD_SHARED_LIBS=OFF ../opencv
     # ENABLE_CXX11 is for Tesseract (https://github.com/opencv/opencv_contrib/blob/a26f71313009c93d105151094436eecd4a0990ed/modules/text/cmake/init.cmake#L19)
 
     if ($runMsbuild) {
