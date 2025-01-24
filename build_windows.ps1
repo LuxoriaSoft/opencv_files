@@ -84,7 +84,8 @@ function BuildForWindows($targetPlatform, $vcpkgPath, $runMsbuild, $hostPlatform
       -D ENABLE_CXX11=1 `
       -D OPENCV_ENABLE_NONFREE=ON `
       -D OPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules `
-      -D BUILD_SHARED_LIBS=OFF ../opencv
+      -D BUILD_SHARED_LIBS=OFF ../opencv `
+      -D CMAKE_TOOLCHAIN_FILE="${vcpkgPath}/scripts/buildsystems/vcpkg.cmake"
     # ENABLE_CXX11 is for Tesseract (https://github.com/opencv/opencv_contrib/blob/a26f71313009c93d105151094436eecd4a0990ed/modules/text/cmake/init.cmake#L19)
 
     if ($runMsbuild) {
