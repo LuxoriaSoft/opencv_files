@@ -108,7 +108,7 @@ If ((Resolve-Path -Path $MyInvocation.InvocationName).ProviderPath -eq $MyInvoca
     #$platform = "x86"
     #$platform = "arm64"
 
-    Invoke-Expression "${vcpkgPath}\vcpkg.exe install tesseract:${platform}-windows-static" -ErrorAction Stop
+    #Invoke-Expression "${vcpkgPath}\vcpkg.exe install tesseract:${platform}-windows-static" -ErrorAction Stop
     #Invoke-Expression "${vcpkgPath}\vcpkg.exe integrate install" -ErrorAction Stop
 
     BuildForWindows $platform $vcpkgPath $FALSE
